@@ -650,14 +650,46 @@ header{background:#101827;color:#fff;padding:20px 6%;display:flex;justify-conten
 .note{background:#fff8dd;border-radius:12px;padding:16px;margin:0 0 28px}
 </style></head><body>
 <header><strong>WP4TUN.COM • MI PANEL 🔐</strong><div><a href="/">Inicio</a> &nbsp; | &nbsp; <a href="/logout">Cerrar sesión</a></div></header>
-<div class="wrap"><h1>Centro de Control</h1><p class="sub">Acceso privado del administrador.</p>
-<div class="note"><strong>Importante:</strong> EchoLink Web funciona directamente en el navegador. Peanut, Cliente Peanut, VoxDMR y Zello dependen de las funciones que sus programas y servicios permitan; aquí tienes sus accesos operativos y oficiales sin exponer tus credenciales.</div>
-<div class="grid">
-<div class="card"><h2>EchoLink</h2><p>Cliente web oficial. Permite iniciar sesión, escuchar y transmitir con el micrófono del navegador.</p><a class="btn" href="https://webapp.echolink.org" target="_blank">ABRIR ECHOLINK WEB</a></div>
-<div class="card"><h2>Peanut</h2><p>Dashboard de Peanut para ver actividad y acceso al proyecto oficial de PA7LIM.</p><a class="btn" href="https://peanut.pa7lim.nl" target="_blank">ABRIR DASHBOARD</a><a class="btn" href="https://www.pa7lim.nl/peanut/" target="_blank">PEANUT</a></div>
-<div class="card"><h2>Cliente Peanut</h2><p>Acceso al sitio de LW6EMN para Cliente Peanut y sus herramientas.</p><a class="btn" href="https://www.lw6emn.ar/" target="_blank">ABRIR CLIENTE PEANUT</a></div>
-<div class="card"><h2>VoxDMR</h2><p>Acceso oficial a VoxDMR. La versión de escritorio se ejecuta como aplicación nativa.</p><a class="btn" href="https://www.voxdmr.com/" target="_blank">ABRIR VOXDMR</a></div>
-<div class="card"><h2>Zello</h2><p>Acceso oficial a las aplicaciones de Zello para escritorio y móvil.</p><a class="btn" href="https://zello.com/downloads/" target="_blank">ABRIR ZELLO</a></div>
+<p><b>Acceso privado del administrador.</b></p>
+
+<div style="background:#fff3cd;padding:15px;border-radius:10px;margin:18px 0;">
+<b>Centro de comunicaciones WP4TUN</b><br>
+Desde este panel puedes acceder a tus sistemas de radioafición.
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;">
+
+<div style="background:white;padding:22px;border-radius:14px;width:250px;">
+<h2>EchoLink Web</h2>
+<p>Acceso directo mediante el navegador.</p>
+<a class="btn" href="https://webapp.echolink.org" target="_blank">ABRIR ECHOLINK WEB</a>
+</div>
+
+<div style="background:white;padding:22px;border-radius:14px;width:250px;">
+<h2>Peanut Global</h2>
+<p>Dashboard y estaciones activas de Peanut.</p>
+<a class="btn" href="https://peanut.pa7lim.nl" target="_blank">ABRIR PEANUT GLOBAL</a>
+</div>
+
+<div style="background:white;padding:22px;border-radius:14px;width:250px;">
+<h2>Cliente Peanut</h2>
+<p>Abrir Cliente Peanut instalado en esta computadora.</p>
+<a class="btn" href="http://127.0.0.1:8765/peanut" target="_blank">ABRIR CLIENTE PEANUT</a>
+</div>
+
+<div style="background:white;padding:22px;border-radius:14px;width:250px;">
+<h2>VoxDMR</h2>
+<p>Abrir VoxDMR instalado en esta computadora.</p>
+<a class="btn" href="http://127.0.0.1:8765/voxdmr" target="_blank">ABRIR VOXDMR</a>
+</div>
+
+<div style="background:white;padding:22px;border-radius:14px;width:250px;">
+<h2>Zello</h2>
+<p>Abrir Zello instalado en esta computadora.</p>
+<a class="btn" href="http://127.0.0.1:8765/zello" target="_blank">ABRIR ZELLO</a>
+</div>
+
+</div>
 </div></div></body></html>
 """
 
