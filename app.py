@@ -182,8 +182,8 @@ footer{
 <div class="logo">WP4TUN.COM</div>
 <nav>
 <a href="/">Inicio</a>
-<a href="#states">US 50 States</a>
-<a href="#encantos">Encantos de PR</a>
+<a href="#states">🇺🇸 50 STATES</a>
+<a href="#encantos">🇵🇷 ENCANTOS DE PR</a>
 <a href="#autoqsl">AUTO QSL</a>
 <a href="#videos">Videos</a>
 <a href="#recursos">Recursos</a>
@@ -199,7 +199,7 @@ footer{
 <section id="states">
 <div class="section">
 
-<h2 class="section-title">🇺🇸 US 50 STATES</h2>
+<h2 class="section-title">🇺🇸 50 STATES</h2>
 
 <p class="section-subtitle">
 Una aventura de radioafición a través de los Estados Unidos.
@@ -212,7 +212,7 @@ Explora las colecciones QSL de cada estado.
 </div>
 
 <div class="map-wrapper">
-<div class="map-title">MAPA DE COLECCIONES • US 50 STATES</div>
+<div class="map-title">MAPA DE COLECCIONES • 50 STATES</div>
 
 <div class="us-map">
 <div class="state">WA</div><div class="state">OR</div><div class="state">CA</div>
@@ -241,21 +241,21 @@ Explora las colecciones QSL de cada estado.
 <div class="state-grid">
 
 <div class="state-card">
-<div class="state-icon">🗽</div>
+<div class="state-icon">🇺🇸</div>
 <h3>New York</h3>
 <p><strong>10 QSL disponibles</strong></p>
 <a class="button" href="/new-york">Ver colección QSL</a>
 </div>
 
 <div class="state-card">
-<div class="state-icon">🏔️</div>
+<div class="state-icon">🇺🇸</div>
 <h3>Alaska</h3>
 <p>Colección disponible</p>
 <a class="button" href="/alaska">Ver colección QSL</a>
 </div>
 
 <div class="state-card">
-<div class="state-icon">🏙️</div>
+<div class="state-icon">🇺🇸</div>
 <h3>Massachusetts</h3>
 <p>Colección disponible</p>
 <a class="button" href="/massachusetts">Ver colección QSL</a>
@@ -264,7 +264,7 @@ Explora las colecciones QSL de cada estado.
 </div>
 
 <div class="coming">
-Próximamente: nuevas colecciones de US 50 STATES 🇺🇸
+Próximamente: nuevas colecciones de los 50 estados de Estados Unidos.
 </div>
 
 </div>
@@ -272,15 +272,45 @@ Próximamente: nuevas colecciones de US 50 STATES 🇺🇸
 
 <section class="future-section" id="encantos">
 <div class="section">
-<h2 class="section-title">🇵🇷 Encantos de PR on the Air</h2>
-<p class="section-subtitle">Colecciones especiales dedicadas a Puerto Rico.</p>
+
+<h2 class="section-title">🇵🇷 ENCANTOS DE PR ON THE AIR</h2>
+
+<p class="section-subtitle">
+Colecciones especiales dedicadas a Puerto Rico.
+</p>
 
 <div class="feature-grid">
-<div class="feature"><div class="feature-icon">🏝️</div><h3>Lugares Turísticos</h3><p>Colección QSL</p></div>
-<div class="feature"><div class="feature-icon">🍽️</div><h3>Sabores</h3><p>Colección QSL</p></div>
-<div class="feature"><div class="feature-icon">🏘️</div><h3>Municipios</h3><p>Colección QSL</p></div>
-<div class="feature"><div class="feature-icon">🐸</div><h3>Coquí</h3><p>Colección QSL</p></div>
-<div class="feature"><div class="feature-icon">🎭</div><h3>La Mascota</h3><p>Colección QSL</p></div>
+
+<div class="feature">
+<div class="feature-icon">🇵🇷</div>
+<h3>LUGARES IMPORTANTES</h3>
+<p>Colección QSL</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🇵🇷</div>
+<h3>SABORES DE PUERTO RICO</h3>
+<p>Colección QSL</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🇵🇷</div>
+<h3>MUNICIPIOS</h3>
+<p>Colección QSL</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🇵🇷</div>
+<h3>COQUÍES</h3>
+<p>Colección QSL</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🇵🇷</div>
+<h3>NUESTRAS MASCOTAS</h3>
+<p>Colección QSL</p>
+</div>
+
 </div>
 </div>
 </section>
@@ -295,7 +325,9 @@ Próximamente: herramienta para preparar y enviar tus QSL desde WP4TUN.COM.
 <section class="future-section" id="videos">
 <div class="section">
 <h2 class="section-title">🎥 Aprende Radioafición</h2>
-<p class="section-subtitle">Videos educativos, tutoriales y contenido para radioaficionados.</p>
+<p class="section-subtitle">
+Videos educativos, tutoriales y contenido para radioaficionados.
+</p>
 </div>
 </section>
 
@@ -309,7 +341,9 @@ Accesos a QRZ, eQSL, YouTube, Google y otros recursos para radioaficionados.
 <section class="future-section" id="panel">
 <div class="section">
 <h2 class="section-title">🔐 Mi Panel</h2>
-<p class="section-subtitle">Área privada de administración de WP4TUN.COM.</p>
+<p class="section-subtitle">
+Área privada de administración de WP4TUN.COM.
+</p>
 </div>
 </section>
 
@@ -347,10 +381,12 @@ header{
     align-items:center;
 }
 header a{color:white;text-decoration:none;font-weight:bold}
+
 .hero{text-align:center;background:white;padding:45px 20px}
 .hero .icon{font-size:58px}
 .hero h1{font-size:42px;margin:8px 0}
 .hero p{color:#697487;font-size:18px}
+
 .gallery{
     max-width:1300px;
     margin:auto;
@@ -375,10 +411,8 @@ header a{color:white;text-decoration:none;font-weight:bold}
     text-align:center;
 }
 .qsl-info strong{font-size:17px}
-.back{
-    text-align:center;
-    padding-bottom:45px;
-}
+
+.back{text-align:center;padding-bottom:45px}
 .back a{
     display:inline-block;
     background:#17233b;
@@ -388,18 +422,22 @@ header a{color:white;text-decoration:none;font-weight:bold}
     border-radius:8px;
     font-weight:bold;
 }
+
 footer{
     background:#101827;
     color:white;
     text-align:center;
     padding:25px;
 }
+
 .modal{
     display:none;
     position:fixed;
     z-index:2000;
-    left:0;top:0;
-    width:100%;height:100%;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,.92);
     padding:25px;
 }
@@ -420,6 +458,7 @@ footer{
     cursor:pointer;
     z-index:2001;
 }
+
 @media(max-width:800px){
     .gallery{grid-template-columns:1fr}
     header{flex-direction:column;gap:10px}
@@ -430,12 +469,12 @@ footer{
 <body>
 
 <header>
-<strong>WP4TUN.COM • US 50 STATES</strong>
+<strong>WP4TUN.COM • 🇺🇸 50 STATES</strong>
 <a href="/#states">← Regresar</a>
 </header>
 
 <section class="hero">
-<div class="icon">🗽</div>
+<div class="icon">🇺🇸</div>
 <h1>New York on the Air</h1>
 <p>Colección completa • 10 QSL • WP4TUN</p>
 </section>
@@ -443,59 +482,59 @@ footer{
 <div class="gallery">
 
 <div class="qsl">
-<img src="/static/I.jpg" onclick="openImage(this.src)">
+<img src="/qsl/I.jpg" onclick="openImage(this.src)" alt="Serie 1 - Estatua de la Libertad">
 <div class="qsl-info"><strong>Serie 1/10</strong> • Estatua de la Libertad</div>
 </div>
 
 <div class="qsl">
-<img src="/static/II.jpg" onclick="openImage(this.src)">
+<img src="/qsl/II.jpg" onclick="openImage(this.src)" alt="Serie 2 - Times Square">
 <div class="qsl-info"><strong>Serie 2/10</strong> • Times Square</div>
 </div>
 
 <div class="qsl">
-<img src="/static/III.jpg" onclick="openImage(this.src)">
+<img src="/qsl/III.jpg" onclick="openImage(this.src)" alt="Serie 3 - Puente de Brooklyn">
 <div class="qsl-info"><strong>Serie 3/10</strong> • Puente de Brooklyn</div>
 </div>
 
 <div class="qsl">
-<img src="/static/IV.jpg" onclick="openImage(this.src)">
+<img src="/qsl/IV.jpg" onclick="openImage(this.src)" alt="Serie 4 - Parque Central">
 <div class="qsl-info"><strong>Serie 4/10</strong> • Parque Central</div>
 </div>
 
 <div class="qsl">
-<img src="/static/V.jpg" onclick="openImage(this.src)">
+<img src="/qsl/V.jpg" onclick="openImage(this.src)" alt="Serie 5 - Empire State">
 <div class="qsl-info"><strong>Serie 5/10</strong> • Empire State</div>
 </div>
 
 <div class="qsl">
-<img src="/static/VI.jpg" onclick="openImage(this.src)">
+<img src="/qsl/VI.jpg" onclick="openImage(this.src)" alt="Serie 6 - Teatros de Broadway">
 <div class="qsl-info"><strong>Serie 6/10</strong> • Teatros de Broadway</div>
 </div>
 
 <div class="qsl">
-<img src="/static/VII.jpg" onclick="openImage(this.src)">
+<img src="/qsl/VII.jpg" onclick="openImage(this.src)" alt="Serie 7 - Memorial y Museo del 11 de Septiembre">
 <div class="qsl-info"><strong>Serie 7/10</strong> • Memorial y Museo del 11 de Septiembre</div>
 </div>
 
 <div class="qsl">
-<img src="/static/VIII.jpg" onclick="openImage(this.src)">
+<img src="/qsl/VIII.jpg" onclick="openImage(this.src)" alt="Serie 8 - Museo Metropolitano de Arte">
 <div class="qsl-info"><strong>Serie 8/10</strong> • Museo Metropolitano de Arte</div>
 </div>
 
 <div class="qsl">
-<img src="/static/IX.jpg" onclick="openImage(this.src)">
+<img src="/qsl/IX.jpg" onclick="openImage(this.src)" alt="Serie 9 - High Line">
 <div class="qsl-info"><strong>Serie 9/10</strong> • High Line</div>
 </div>
 
 <div class="qsl">
-<img src="/static/X.jpg" onclick="openImage(this.src)">
+<img src="/qsl/X.jpg" onclick="openImage(this.src)" alt="Serie 10 - Coney Island">
 <div class="qsl-info"><strong>Serie 10/10</strong> • Coney Island</div>
 </div>
 
 </div>
 
 <div class="back">
-<a href="/#states">← Regresar a US 50 STATES</a>
+<a href="/#states">← Regresar a 50 STATES</a>
 </div>
 
 <div id="imageModal" class="modal" onclick="closeImage()">
@@ -522,7 +561,7 @@ function closeImage(){
 """
 
 
-def state_placeholder(state, icon):
+def state_placeholder(state):
     return f"""
     <!DOCTYPE html>
     <html lang="es">
@@ -531,21 +570,39 @@ def state_placeholder(state, icon):
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{state} | WP4TUN.COM</title>
     <style>
-    body{{font-family:Arial;text-align:center;margin:0;background:#f4f7fb;color:#172033}}
-    header{{background:#101827;color:white;padding:22px}}
+    body{{
+        font-family:Arial,Helvetica,sans-serif;
+        text-align:center;
+        margin:0;
+        background:#f4f7fb;
+        color:#172033
+    }}
+    header{{
+        background:#101827;
+        color:white;
+        padding:22px
+    }}
     main{{padding:70px 20px}}
-    .icon{{font-size:65px}}
+    .flag{{font-size:65px}}
     h1{{font-size:42px}}
-    a{{display:inline-block;margin-top:25px;background:#17233b;color:white;text-decoration:none;padding:12px 22px;border-radius:8px}}
+    a{{
+        display:inline-block;
+        margin-top:25px;
+        background:#17233b;
+        color:white;
+        text-decoration:none;
+        padding:12px 22px;
+        border-radius:8px
+    }}
     </style>
     </head>
     <body>
-    <header><strong>WP4TUN.COM • US 50 STATES</strong></header>
+    <header><strong>WP4TUN.COM • 🇺🇸 50 STATES</strong></header>
     <main>
-    <div class="icon">{icon}</div>
+    <div class="flag">🇺🇸</div>
     <h1>{state}</h1>
     <p>La colección QSL será añadida próximamente.</p>
-    <a href="/#states">← Regresar a US 50 STATES</a>
+    <a href="/#states">← Regresar a 50 STATES</a>
     </main>
     </body>
     </html>
@@ -564,15 +621,18 @@ def new_york():
 
 @app.route("/alaska")
 def alaska():
-    return state_placeholder("Alaska", "🏔️")
+    return state_placeholder("Alaska")
 
 
 @app.route("/massachusetts")
 def massachusetts():
-    return state_placeholder("Massachusetts", "🏙️")
+    return state_placeholder("Massachusetts")
 
-@app.route("/static/<path:filename>")
+
+@app.route("/qsl/<path:filename>")
 def qsl_images(filename):
     return send_from_directory(".", filename)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
