@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, send_from_directory
 
 app = Flask(__name__)
 
@@ -571,6 +571,8 @@ def alaska():
 def massachusetts():
     return state_placeholder("Massachusetts", "🏙️")
 
-
+@app.route("/static/<path:filename>")
+def qsl_images(filename):
+    return send_from_directory(".", filename)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
