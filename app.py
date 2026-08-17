@@ -199,7 +199,7 @@ footer{
 <section id="states">
 <div class="section">
 
-<h2 class="section-title">🇺🇸 50 STATES</h2>
+<h2 class="section-title">50 STATES</h2>
 
 <p class="section-subtitle">
 Una aventura de radioafición a través de los Estados Unidos.
@@ -273,8 +273,7 @@ Próximamente: nuevas colecciones de los 50 estados de Estados Unidos.
 <section class="future-section" id="encantos">
 <div class="section">
 
-<h2 class="section-title">🇵🇷 ENCANTOS DE PR ON THE AIR</h2>
-
+<h2 class="section-title">ENCANTOS DE PR ON THE AIR</h2>
 <p class="section-subtitle">
 Colecciones especiales dedicadas a Puerto Rico.
 </p>
@@ -282,31 +281,31 @@ Colecciones especiales dedicadas a Puerto Rico.
 <div class="feature-grid">
 
 <div class="feature">
-<div class="feature-icon">🇵🇷</div>
+<div class="feature-icon"></div>
 <h3>LUGARES IMPORTANTES</h3>
 <p>Colección QSL</p>
 </div>
 
 <div class="feature">
-<div class="feature-icon">🇵🇷</div>
+<div class="feature-icon"></div>
 <h3>SABORES DE PUERTO RICO</h3>
 <p>Colección QSL</p>
 </div>
 
 <div class="feature">
-<div class="feature-icon">🇵🇷</div>
+<div class="feature-icon"></div>
 <h3>MUNICIPIOS</h3>
 <p>Colección QSL</p>
 </div>
 
 <div class="feature">
-<div class="feature-icon">🇵🇷</div>
+<div class="feature-icon"></div>
 <h3>COQUÍES</h3>
 <p>Colección QSL</p>
 </div>
 
 <div class="feature">
-<div class="feature-icon">🇵🇷</div>
+<div class="feature-icon"<>/div>
 <h3>NUESTRAS MASCOTAS</h3>
 <p>Colección QSL</p>
 </div>
