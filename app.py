@@ -351,7 +351,7 @@ footer{
 
 <div class="section">
 
-<h2 class="section-title">🇺🇸 50 STATES</h2>
+<h2 class="section-title">🇺🇸 US 50 STATES</h2>
 
 <p class="section-subtitle">
 Una aventura de radioafición a través de los Estados Unidos.
@@ -389,7 +389,7 @@ MAPA DE COLECCIONES • US 50 STATES
 <div class="state">VT</div>
 <div class="state">NH</div>
 <div class="state">ME</div>
-<div class="state">MA</div>
+
 <div class="state">RI</div>
 
 <div class="state">OR</div>
