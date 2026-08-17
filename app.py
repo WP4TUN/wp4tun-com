@@ -1,6 +1,8 @@
-from flask import Flask, render_template_string, send_from_directory
+from flask import Flask, render_template_string, send_from_directory, request, redirect, session, url_for
+import os
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "change-this-in-render")
 
 HOME = """
 <!DOCTYPE html>
@@ -182,12 +184,12 @@ footer{
 <div class="logo">WP4TUN.COM</div>
 <nav>
 <a href="/">Inicio</a>
-<a href="#states">🇺🇸 50 STATES</a>
-<a href="#encantos">🇵🇷 ENCANTOS DE PR</a>
+<a href="#states">50 STATES</a>
+<a href="#encantos">ENCANTOS DE PR</a>
 <a href="#autoqsl">AUTO QSL</a>
 <a href="#videos">Videos</a>
-<a href="#recursos">Recursos</a>
-<a href="#panel">Mi Panel 🔐</a>
+<a href="/herramientas">Herramientas</a>
+<a href="/panel">Mi Panel 🔐</a>
 </nav>
 </header>
 
@@ -305,7 +307,7 @@ Colecciones especiales dedicadas a Puerto Rico.
 </div>
 
 <div class="feature">
-<div class="feature-icon"<>/div>
+<div class="feature-icon"></div>
 <h3>NUESTRAS MASCOTAS</h3>
 <p>Colección QSL</p>
 </div>
@@ -335,15 +337,6 @@ Videos educativos, tutoriales y contenido para radioaficionados.
 <p class="section-subtitle">
 Accesos a QRZ, eQSL, YouTube, Google y otros recursos para radioaficionados.
 </p>
-</section>
-
-<section class="future-section" id="panel">
-<div class="section">
-<h2 class="section-title">🔐 Mi Panel</h2>
-<p class="section-subtitle">
-Área privada de administración de WP4TUN.COM.
-</p>
-</div>
 </section>
 
 <footer>
@@ -608,6 +601,66 @@ def state_placeholder(state):
     """
 
 
+
+TOOLS_PAGE = """
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Herramientas | WP4TUN.COM</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}
+header{background:#101827;color:#fff;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}
+header a{color:#fff;text-decoration:none;font-weight:bold}.wrap{max-width:1100px;margin:auto;padding:45px 22px}
+h1{text-align:center;font-size:40px}.sub{text-align:center;color:#687386;margin-bottom:35px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{background:#fff;border-radius:16px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.card h2{margin-top:0}.card p{color:#687386;min-height:62px}.btn{display:inline-block;background:#17233b;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:bold;margin:4px 4px 4px 0}
+</style></head><body>
+<header><strong>WP4TUN.COM • HERRAMIENTAS</strong><a href="/">← Inicio</a></header>
+<div class="wrap"><h1>Herramientas de Radioafición</h1><p class="sub">Accesos y descargas para radioaficionados.</p>
+<div class="grid">
+<div class="card"><h2>EchoLink</h2><p>Acceso web oficial y descarga del programa.</p><a class="btn" href="https://webapp.echolink.org" target="_blank">Abrir EchoLink Web</a><a class="btn" href="https://secure.echolink.org/download.htm" target="_blank">Descargar</a></div>
+<div class="card"><h2>Peanut</h2><p>Proyecto Peanut de PA7LIM, dashboard y software oficial.</p><a class="btn" href="https://peanut.pa7lim.nl" target="_blank">Dashboard</a><a class="btn" href="https://www.pa7lim.nl/peanut/" target="_blank">Peanut oficial</a></div>
+<div class="card"><h2>Cliente Peanut</h2><p>Información del Cliente Peanut de LW6EMN.</p><a class="btn" href="https://www.lw6emn.ar/" target="_blank">Abrir sitio</a></div>
+<div class="card"><h2>VoxDMR</h2><p>DMR desde Windows, Linux y Android.</p><a class="btn" href="https://www.voxdmr.com/" target="_blank">Abrir VoxDMR</a><a class="btn" href="https://www.voxdmr.com/docs/installation/" target="_blank">Instalar</a></div>
+<div class="card"><h2>Zello</h2><p>Aplicaciones oficiales de Zello para escritorio y móvil.</p><a class="btn" href="https://zello.com/downloads/" target="_blank">Descargar Zello</a></div>
+</div></div></body></html>
+"""
+
+LOGIN_PAGE = """
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Panel | WP4TUN.COM</title><style>
+body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}.box{max-width:420px;margin:90px auto;background:#fff;padding:35px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+h1{text-align:center}input{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd3dd;border-radius:8px;font-size:16px}
+button{width:100%;padding:13px;margin-top:12px;background:#17233b;color:#fff;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
+.error{color:#b00020;text-align:center}.back{text-align:center;margin-top:18px}.back a{color:#17233b}
+</style></head><body><div class="box"><h1>🔐 Mi Panel</h1><p style="text-align:center">Acceso privado de WP4TUN.COM</p>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="post"><input name="username" placeholder="Usuario" required autocomplete="username"><input type="password" name="password" placeholder="Contraseña" required autocomplete="current-password"><button type="submit">ENTRAR</button></form>
+<div class="back"><a href="/">← Regresar a WP4TUN.COM</a></div></div></body></html>
+"""
+
+PANEL_PAGE = """
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Panel | WP4TUN.COM</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}
+header{background:#101827;color:#fff;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px}header a{color:#fff;text-decoration:none;font-weight:bold}
+.wrap{max-width:1150px;margin:auto;padding:42px 22px}h1{text-align:center;font-size:40px;margin-bottom:8px}.sub{text-align:center;color:#687386;margin-bottom:35px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.card{background:#fff;border-radius:16px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.card h2{margin-top:0}.card p{color:#687386;min-height:72px}.btn{display:inline-block;background:#17233b;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:bold;margin:4px 4px 4px 0}
+.note{background:#fff8dd;border-radius:12px;padding:16px;margin:0 0 28px}
+</style></head><body>
+<header><strong>WP4TUN.COM • MI PANEL 🔐</strong><div><a href="/">Inicio</a> &nbsp; | &nbsp; <a href="/logout">Cerrar sesión</a></div></header>
+<div class="wrap"><h1>Centro de Control</h1><p class="sub">Acceso privado del administrador.</p>
+<div class="note"><strong>Importante:</strong> EchoLink Web funciona directamente en el navegador. Peanut, Cliente Peanut, VoxDMR y Zello dependen de las funciones que sus programas y servicios permitan; aquí tienes sus accesos operativos y oficiales sin exponer tus credenciales.</div>
+<div class="grid">
+<div class="card"><h2>EchoLink</h2><p>Cliente web oficial. Permite iniciar sesión, escuchar y transmitir con el micrófono del navegador.</p><a class="btn" href="https://webapp.echolink.org" target="_blank">ABRIR ECHOLINK WEB</a></div>
+<div class="card"><h2>Peanut</h2><p>Dashboard de Peanut para ver actividad y acceso al proyecto oficial de PA7LIM.</p><a class="btn" href="https://peanut.pa7lim.nl" target="_blank">ABRIR DASHBOARD</a><a class="btn" href="https://www.pa7lim.nl/peanut/" target="_blank">PEANUT</a></div>
+<div class="card"><h2>Cliente Peanut</h2><p>Acceso al sitio de LW6EMN para Cliente Peanut y sus herramientas.</p><a class="btn" href="https://www.lw6emn.ar/" target="_blank">ABRIR CLIENTE PEANUT</a></div>
+<div class="card"><h2>VoxDMR</h2><p>Acceso oficial a VoxDMR. La versión de escritorio se ejecuta como aplicación nativa.</p><a class="btn" href="https://www.voxdmr.com/" target="_blank">ABRIR VOXDMR</a></div>
+<div class="card"><h2>Zello</h2><p>Acceso oficial a las aplicaciones de Zello para escritorio y móvil.</p><a class="btn" href="https://zello.com/downloads/" target="_blank">ABRIR ZELLO</a></div>
+</div></div></body></html>
+"""
+
 @app.route("/")
 def inicio():
     return render_template_string(HOME)
@@ -626,6 +679,43 @@ def alaska():
 @app.route("/massachusetts")
 def massachusetts():
     return state_placeholder("Massachusetts")
+
+
+
+@app.route("/herramientas")
+def herramientas():
+    return render_template_string(TOOLS_PAGE)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("admin"):
+        return redirect(url_for("panel"))
+    error = None
+    if request.method == "POST":
+        admin_user = os.environ.get("ADMIN_USER", "wp4tun")
+        admin_pass = os.environ.get("ADMIN_PASSWORD")
+        if not admin_pass:
+            error = "El administrador todavía no ha configurado la contraseña en Render."
+        elif request.form.get("username") == admin_user and request.form.get("password") == admin_pass:
+            session["admin"] = True
+            return redirect(url_for("panel"))
+        else:
+            error = "Usuario o contraseña incorrectos."
+    return render_template_string(LOGIN_PAGE, error=error)
+
+
+@app.route("/panel")
+def panel():
+    if not session.get("admin"):
+        return redirect(url_for("login"))
+    return render_template_string(PANEL_PAGE)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("inicio"))
 
 
 @app.route("/qsl/<path:filename>")
