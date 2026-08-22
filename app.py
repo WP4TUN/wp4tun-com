@@ -705,7 +705,209 @@ def new_york():
 
 @app.route("/alaska")
 def alaska():
-    return state_placeholder("Alaska")
+    return """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alaska on the Air | WP4TUN.COM</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#07111f;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+header{
+    background:#0b1728;
+    padding:18px 30px;
+    border-bottom:1px solid #24364d;
+}
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#ffcc66;
+}
+.hero{
+    text-align:center;
+    padding:45px 20px 30px;
+}
+.hero h1{
+    font-size:42px;
+    margin:10px 0;
+}
+.hero p{
+    color:#b9c7d8;
+    font-size:18px;
+}
+.gallery{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+.qsl{
+    background:#101d2d;
+    border:1px solid #263b55;
+    border-radius:12px;
+    overflow:hidden;
+}
+.qsl img{
+    width:100%;
+    display:block;
+    cursor:pointer;
+}
+.qsl-info{
+    text-align:center;
+    padding:12px;
+    font-weight:bold;
+}
+.back{
+    text-align:center;
+    padding:30px;
+}
+.back a{
+    color:#ffcc66;
+    text-decoration:none;
+    font-weight:bold;
+}
+footer{
+    text-align:center;
+    padding:25px;
+    color:#8293a8;
+}
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.94);
+    align-items:center;
+    justify-content:center;
+}
+.modal img{
+    max-width:95%;
+    max-height:92%;
+}
+.modal span{
+    position:absolute;
+    top:15px;
+    right:30px;
+    font-size:45px;
+    cursor:pointer;
+}
+@media(max-width:800px){
+    .gallery{grid-template-columns:1fr}
+    .hero h1{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">WP4TUN.COM</div>
+</header>
+
+<section class="hero">
+    <div style="font-size:42px">🇺🇸</div>
+    <h1>ALASKA ON THE AIR 2026</h1>
+    <p>Una aventura radioaficionada a través de la Última Frontera.</p>
+</section>
+
+<div class="gallery">
+
+    <div class="qsl">
+        <img src="/qsl/alaska/1.jpg" onclick="openImage(this.src)" alt="Denali">
+        <div class="qsl-info">QSL #1 — Denali</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/2.jpg" onclick="openImage(this.src)" alt="Aurora Boreal">
+        <div class="qsl-info">QSL #2 — Aurora Boreal</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/3.jpg" onclick="openImage(this.src)" alt="Glaciar Mendenhall">
+        <div class="qsl-info">QSL #3 — Glaciar Mendenhall</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/4.jpg" onclick="openImage(this.src)" alt="Kenai Fjords">
+        <div class="qsl-info">QSL #4 — Kenai Fjords</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/5.jpg" onclick="openImage(this.src)" alt="Seward">
+        <div class="qsl-info">QSL #5 — Seward</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/6.jpg" onclick="openImage(this.src)" alt="Vida Silvestre de Alaska">
+        <div class="qsl-info">QSL #6 — Vida Silvestre de Alaska</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/7.jpg" onclick="openImage(this.src)" alt="Fairbanks">
+        <div class="qsl-info">QSL #7 — Fairbanks</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/8.jpg" onclick="openImage(this.src)" alt="Pasaje Interior">
+        <div class="qsl-info">QSL #8 — Pasaje Interior</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/9.jpg" onclick="openImage(this.src)" alt="Skagway">
+        <div class="qsl-info">QSL #9 — Skagway</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/10.jpg" onclick="openImage(this.src)" alt="Juneau">
+        <div class="qsl-info">QSL #10 — Juneau</div>
+    </div>
+
+    <div class="qsl">
+        <img src="/qsl/alaska/11.jpg" onclick="openImage(this.src)" alt="Alaska Railroad">
+        <div class="qsl-info">QSL #11 — Alaska Railroad</div>
+    </div>
+
+</div>
+
+<div class="back">
+    <a href="/#states">← VOLVER A 50 STATES</a>
+</div>
+
+<footer>
+    WP4TUN.COM • Raymond Vega-Ramos • Puerto Rico
+</footer>
+
+<div id="imageModal" class="modal" onclick="closeImage()">
+    <span>&times;</span>
+    <img id="modalImage">
+</div>
+
+<script>
+function openImage(src){
+    document.getElementById("modalImage").src=src;
+    document.getElementById("imageModal").style.display="flex";
+}
+function closeImage(){
+    document.getElementById("imageModal").style.display="none";
+}
+</script>
+
+</body>
+</html>
+"""
 
 
 @app.route("/massachusetts")
