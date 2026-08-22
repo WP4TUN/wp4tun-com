@@ -554,144 +554,150 @@ function closeImage(){
 
 
 def state_placeholder(state):
+    # Convierte el nombre del estado en nombre de carpeta.
+    # Ejemplo: "South Dakota" -> "south-dakota"
+    folder = state.lower().replace(" ", "-")
+
+    # Busca automáticamente las QSL dentro de la carpeta del estado.
+    folder_path = os.path.join(app.root_path, folder)
+
+    images = []
+
+    if os.path.isdir(folder_path):
+        for filename in os.listdir(folder_path):
+            if filename.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
+                images.append(filename)
+
+    # Ordena correctamente: 1.jpg, 2.jpg, 3.jpg ... 10.jpg, 11.jpg
+    def image_order(filename):
+        name = os.path.splitext(filename)[0]
+        try:
+            return (0, int(name))
+        except ValueError:
+            return (1, name.lower())
+
+    images.sort(key=image_order)
+
+    gallery = ""
+
+    for filename in images:
+        gallery += f"""
+        <div class="qsl">
+            <a href="/state-image/{folder}/{filename}" target="_blank">
+                <img src="/state-image/{folder}/{filename}" alt="{state} QSL">
+            </a>
+        </div>
+        """
+
+    if not images:
+        gallery = """
+        <div class="empty">
+            <h2>PRÓXIMAMENTE</h2>
+            <p>Esta colección QSL está en preparación.</p>
+        </div>
+        """
+
     return f"""
     <!DOCTYPE html>
     <html lang="es">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{state} | WP4TUN.COM</title>
-    <style>
-    body{{
-        font-family:Arial,Helvetica,sans-serif;
-        text-align:center;
-        margin:0;
-        background:#f4f7fb;
-        color:#172033
-    }}
-    header{{
-        background:#101827;
-        color:white;
-        padding:22px
-    }}
-    main{{padding:70px 20px}}
-    .flag{{font-size:65px}}
-    h1{{font-size:42px}}
-    a{{
-        display:inline-block;
-        margin-top:25px;
-        background:#17233b;
-        color:white;
-        text-decoration:none;
-        padding:12px 22px;
-        border-radius:8px
-    }}
-    </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{state} | WP4TUN.COM</title>
+
+        <style>
+            * {{
+                box-sizing: border-box;
+            }}
+
+            body {{
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                background: #f4f7fb;
+                color: #172033;
+            }}
+
+            header {{
+                background: #101827;
+                color: white;
+                padding: 18px 25px;
+                text-align: center;
+            }}
+
+            header h1 {{
+                margin: 0;
+                font-size: 34px;
+            }}
+
+            header p {{
+                margin: 7px 0 0;
+                color: #d7deea;
+            }}
+
+            .back {{
+                display: inline-block;
+                margin: 20px;
+                padding: 10px 18px;
+                background: #17233b;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: bold;
+            }}
+
+            .gallery {{
+                width: 94%;
+                max-width: 1500px;
+                margin: 10px auto 50px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 22px;
+            }}
+
+            .qsl {{
+                background: white;
+                padding: 8px;
+                border-radius: 12px;
+                box-shadow: 0 4px 16px rgba(0,0,0,.14);
+            }}
+
+            .qsl img {{
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 8px;
+                cursor: pointer;
+            }}
+
+            .empty {{
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 80px 20px;
+            }}
+
+            .empty h2 {{
+                font-size: 38px;
+                margin-bottom: 10px;
+            }}
+        </style>
     </head>
+
     <body>
-    <header><strong>WP4TUN.COM • 🇺🇸 50 STATES</strong></header>
-    <main>
-    <div class="flag">🇺🇸</div>
-    <h1>{state}</h1>
-    <p>La colección QSL será añadida próximamente.</p>
-    <a href="/#states">← Regresar a 50 STATES</a>
-    </main>
+
+        <header>
+            <h1>{state.upper()}</h1>
+            <p>QSL COLLECTION • WP4TUN.COM</p>
+        </header>
+
+        <a class="back" href="/#states">← VOLVER A 50 STATES</a>
+
+        <div class="gallery">
+            {gallery}
+        </div>
+
     </body>
     </html>
     """
-
-
-
-TOOLS_PAGE = """
-<!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Herramientas | WP4TUN.COM</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}
-header{background:#101827;color:#fff;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}
-header a{color:#fff;text-decoration:none;font-weight:bold}.wrap{max-width:1100px;margin:auto;padding:45px 22px}
-h1{text-align:center;font-size:40px}.sub{text-align:center;color:#687386;margin-bottom:35px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.card{background:#fff;border-radius:16px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.card h2{margin-top:0}.card p{color:#687386;min-height:62px}.btn{display:inline-block;background:#17233b;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:bold;margin:4px 4px 4px 0}
-</style></head><body>
-<header><strong>WP4TUN.COM • HERRAMIENTAS</strong><a href="/">← Inicio</a></header>
-<div class="wrap"><h1>Herramientas de Radioafición</h1><p class="sub">Accesos y descargas para radioaficionados.</p>
-<div class="grid">
-<div class="card"><h2>EchoLink</h2><p>Acceso web oficial y descarga del programa.</p><a class="btn" href="https://webapp.echolink.org" target="_blank">Abrir EchoLink Web</a><a class="btn" href="https://secure.echolink.org/download.htm" target="_blank">Descargar</a></div>
-<div class="card"><h2>Peanut</h2><p>Proyecto Peanut de PA7LIM, dashboard y software oficial.</p><a class="btn" href="https://peanut.pa7lim.nl" target="_blank">Dashboard</a><a class="btn" href="https://www.pa7lim.nl/peanut/" target="_blank">Peanut oficial</a></div>
-<div class="card"><h2>Cliente Peanut</h2><p>Información del Cliente Peanut de LW6EMN.</p><a class="btn" href="https://www.lw6emn.ar/" target="_blank">Abrir sitio</a></div>
-<div class="card"><h2>VoxDMR</h2><p>DMR desde Windows, Linux y Android.</p><a class="btn" href="https://www.voxdmr.com/" target="_blank">Abrir VoxDMR</a><a class="btn" href="https://www.voxdmr.com/docs/installation/" target="_blank">Instalar</a></div>
-<div class="card"><h2>Zello</h2><p>Aplicaciones oficiales de Zello para escritorio y móvil.</p><a class="btn" href="https://zello.com/downloads/" target="_blank">Descargar Zello</a></div>
-</div></div></body></html>
-"""
-
-LOGIN_PAGE = """
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mi Panel | WP4TUN.COM</title><style>
-body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}.box{max-width:420px;margin:90px auto;background:#fff;padding:35px;border-radius:18px;box-shadow:0 8px 28px rgba(0,0,0,.12)}
-h1{text-align:center}input{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd3dd;border-radius:8px;font-size:16px}
-button{width:100%;padding:13px;margin-top:12px;background:#17233b;color:#fff;border:0;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-.error{color:#b00020;text-align:center}.back{text-align:center;margin-top:18px}.back a{color:#17233b}
-</style></head><body><div class="box"><h1>🔐 Mi Panel</h1><p style="text-align:center">Acceso privado de WP4TUN.COM</p>
-{% if error %}<p class="error">{{ error }}</p>{% endif %}
-<form method="post"><input name="username" placeholder="Usuario" required autocomplete="username"><input type="password" name="password" placeholder="Contraseña" required autocomplete="current-password"><button type="submit">ENTRAR</button></form>
-<div class="back"><a href="/">← Regresar a WP4TUN.COM</a></div></div></body></html>
-"""
-
-PANEL_PAGE = """
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mi Panel | WP4TUN.COM</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f4f7fb;color:#172033}
-header{background:#101827;color:#fff;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px}header a{color:#fff;text-decoration:none;font-weight:bold}
-.wrap{max-width:1150px;margin:auto;padding:42px 22px}h1{text-align:center;font-size:40px;margin-bottom:8px}.sub{text-align:center;color:#687386;margin-bottom:35px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.card{background:#fff;border-radius:16px;padding:25px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.card h2{margin-top:0}.card p{color:#687386;min-height:72px}.btn{display:inline-block;background:#17233b;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:bold;margin:4px 4px 4px 0}
-.note{background:#fff8dd;border-radius:12px;padding:16px;margin:0 0 28px}
-</style></head><body>
-<header><strong>WP4TUN.COM • MI PANEL 🔐</strong><div><a href="/">Inicio</a> &nbsp; | &nbsp; <a href="/logout">Cerrar sesión</a></div></header>
-<p><b>Acceso privado del administrador.</b></p>
-
-<div style="background:#fff3cd;padding:15px;border-radius:10px;margin:18px 0;">
-<b>Centro de comunicaciones WP4TUN</b><br>
-Desde este panel puedes acceder a tus sistemas de radioafición.
-</div>
-
-<div style="display:flex;flex-wrap:wrap;gap:20px;">
-
-<div style="background:white;padding:22px;border-radius:14px;width:250px;">
-<h2>EchoLink Web</h2>
-<p>Acceso directo mediante el navegador.</p>
-<a class="btn" href="https://webapp.echolink.org" target="_blank">ABRIR ECHOLINK WEB</a>
-</div>
-
-<div style="background:white;padding:22px;border-radius:14px;width:250px;">
-<h2>Peanut Global</h2>
-<p>Dashboard y estaciones activas de Peanut.</p>
-<a class="btn" href="https://peanut.pa7lim.nl" target="_blank">ABRIR PEANUT GLOBAL</a>
-</div>
-
-<div style="background:white;padding:22px;border-radius:14px;width:250px;">
-<h2>Cliente Peanut</h2>
-<p>Abrir Cliente Peanut instalado en esta computadora.</p>
-<a class="btn" href="http://127.0.0.1:8765/peanut" target="_blank">ABRIR CLIENTE PEANUT</a>
-</div>
-
-<div style="background:white;padding:22px;border-radius:14px;width:250px;">
-<h2>VoxDMR</h2>
-<p>Abrir VoxDMR instalado en esta computadora.</p>
-<a class="btn" href="http://127.0.0.1:8765/voxdmr" target="_blank">ABRIR VOXDMR</a>
-</div>
-
-<div style="background:white;padding:22px;border-radius:14px;width:250px;">
-<h2>Zello</h2>
-<p>Abrir Zello instalado en esta computadora.</p>
-<a class="btn" href="http://127.0.0.1:8765/zello" target="_blank">ABRIR ZELLO</a>
-</div>
-
-</div>
-</div></div></body></html>
-"""
 
 @app.route("/")
 def inicio():
@@ -914,7 +920,12 @@ function closeImage(){
 def massachusetts():
     return state_placeholder("Massachusetts")
 
-
+@app.route("/state-image/<state>/<filename>")
+def state_image(state, filename):
+    return send_from_directory(
+        os.path.join(app.root_path, state),
+        filename
+    )
 
 @app.route("/herramientas")
 def herramientas():
